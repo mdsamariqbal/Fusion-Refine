@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion Refine: Character Combiner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+        <div class="overlay"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="glow-text">Fusion <span class="accent">Refine</span></h1>
+            <p class="subtitle">AI-Powered Character Synthesis System</p>
+        </header>
+
+        <main id="appMain">
+            <!-- Welcome / Dynamic Landing Page -->
+            <div id="screenLanding" class="glass-panel" style="text-align: center; padding: 4rem 2rem;">
+                <div class="hero-graphics" style="margin-bottom: 2rem;">
+                    <div class="floating-orb orb-1"></div>
+                    <div class="floating-orb orb-2"></div>
+                    <h2 class="dynamic-title">Unleash Your Imagination</h2>
+                </div>
+                <p class="typing-text"
+                    style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; min-height: 30px;">
+                    Merge any two characters into a single masterpiece using the power of AI.
+                </p>
+                <button id="enterAppBtn" class="cyber-btn"
+                    style="max-width: 300px; margin: 0 auto; font-size: 1.3rem; padding: 1.2rem;">
+                    ENTER FUSION ENGINE
+                </button>
+            </div>
+
+            <!-- 8.1 & 8.2: Home / Character Input Screen -->
+            <div id="screenInput" class="glass-panel hidden">
+                <div class="step-header">
+                    <span class="step-badge">Phase 1</span>
+                    <h2>Initialize Fusion Subjects</h2>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <label for="char1">Character 1 Name</label>
+                        <input type="text" id="char1" placeholder="e.g., Pikachu">
+                    </div>
+                    <div class="plus-icon">+</div>
+                    <div class="input-wrapper">
+                        <label for="char2">Character 2 Name</label>
+                        <input type="text" id="char2" placeholder="e.g., Iron Man">
+                    </div>
+                </div>
+                <button id="startGenerationBtn" class="cyber-btn">
+                    START GENERATION
+                </button>
+            </div>
+
+            <!-- 8.3 & 8.4: AI Description & Prompt Fusion Screen -->
+            <div id="screenDescription" class="glass-panel hidden">
+                <div class="step-header">
+                    <span class="step-badge">Phase 2</span>
+                    <h2>AI Concept Analysis</h2>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="data-card">
+                        <h3>Character Profiles</h3>
+                        <p id="char1Desc" class="log-entry highlight">Analyzing Character 1...</p>
+                        <br>
+                        <p id="char2Desc" class="log-entry highlight">Analyzing Character 2...</p>
+                    </div>
+                    <div class="data-card">
+                        <h3>Fusion Engine Prompt</h3>
+                        <p id="fusedPromptText" class="log-entry">Awaiting concept fusion...</p>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="descProgressBar"></div>
+                </div>
+                <button id="proceedFusionBtn" class="cyber-btn hidden">
+                    PROCEED TO IMAGE GENERATION
+                </button>
+            </div>
+
+            <!-- 8.5, 8.6, 8.7, 8.9: Iteration Progress Dashboard -->
+            <div id="screenProgress" class="glass-panel hidden">
+                <div class="step-header">
+                    <span class="step-badge">Phase 3</span>
+                    <h2>Iterative Refinement Loop</h2>
+                </div>
+                <div class="score-display">
+                    <div class="score-box">
+                        <span class="label">Iteration</span>
+                        <span class="value" id="currentIteration">1 / 5</span>
+                    </div>
+                    <div class="score-box">
+                        <span class="label">Similarity Score</span>
+                        <span class="value" id="simScore">--</span>
+                    </div>
+                    <div class="score-box quality">
+                        <span class="label">Quality Score</span>
+                        <span class="value" id="qualScore">--</span>
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="data-card">
+                        <h3>System Evaluation Log</h3>
+                        <div class="log-container" id="evalLogs">
+                            <p class="log-entry">> Initializing generation sequence...</p>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <h3>Refinement Status</h3>
+                        <p id="refinementStatus" class="log-entry">Waiting for evaluation feedback...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8.8: Final Output Screen -->
+            <div id="screenFinal" class="glass-panel hidden">
+                <div class="step-header">
+                    <span class="step-badge">Phase 4</span>
+                    <h2>Final Fused Character</h2>
+                </div>
+                <div class="result-layout">
+                    <div class="image-container">
+                        <img id="finalImage"
+                            src="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?q=80&w=800&auto=format&fit=crop"
+                            alt="Fused Result">
+                    </div>
+                    <div class="data-card">
+                        <h3>Final Output Details</h3>
+                        <p><strong>Optimized Prompt:</strong> <span id="finalPromptText">...</span></p>
+                        <br>
+                        <p><strong>Final Evaluation Score:</strong> <span id="finalScoreText">...</span></p>
+                        <br>
+                        <button id="saveResultBtn" class="cyber-btn">SAVE TO HISTORY</button>
+                        <button id="restartBtn" class="cyber-btn secondary">NEW FUSION</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8.10: Stored Output Screen (Gallery) -->
+            <div id="screenHistory" class="glass-panel hidden">
+                <div class="step-header">
+                    <span class="step-badge">History</span>
+                    <h2>Stored Generations</h2>
+                </div>
+                <div class="dashboard-grid" id="historyGallery">
+                    <!-- Historical items will be appended here via JS -->
+                </div>
+                <button id="backFromHistoryBtn" class="cyber-btn secondary">BACK TO MAIN</button>
+            </div>
+
+        </main>
+
+        <footer class="glass-panel" style="margin-top: 40px; padding: 30px; text-align: left;">
+            <div class="footer-content" style="flex-direction: column; align-items: flex-start;">
+                <h3 style="color: var(--accent); margin-bottom: 15px;">Project Documentation</h3>
+                <p style="margin-bottom: 10px; line-height: 1.5;"><strong>Fusion Refine</strong> is an AI-powered
+                    Character Synthesis System built for a college project. It utilizes the Gemini AI API for natural
+                    language concept analysis and Stable Diffusion for generative image synthesis.</p>
+                <p style="margin-bottom: 10px; color: var(--primary);"><strong>System Pipeline Steps:</strong></p>
+                <ol style="margin-left: 20px; margin-bottom: 25px; line-height: 1.6; color: #ccc;">
+                    <li><strong>Phase 1 (Input):</strong> User provides two characters to fuse.</li>
+                    <li><strong>Phase 2 (Concept Analysis):</strong> Gemini AI extracts visual traits from both
+                        characters and merges them into a single, optimized image generation prompt.</li>
+                    <li><strong>Phase 3 (Refinement Loop):</strong> Simulates an iterative feedback loop where generated
+                        images are evaluated to improve the prompt logic (Reinforcement Learning).</li>
+                    <li><strong>Phase 4 (Final Output):</strong> The final optimized character fusion image and prompt
+                        are delivered to the user.</li>
+                </ol>
+
+                <div class="footer-links" style="display: flex; gap: 20px; margin-top: 10px; width: 100%;">
+                    <a href="#" id="viewHistoryLink" class="cyber-btn"
+                        style="padding: 10px 20px; font-size: 0.9em; text-decoration: none;">View Stored History</a>
+                    <a href="https://github.com/mdsamariqbal/Fusion-Refine" target="_blank" class="cyber-btn secondary"
+                        style="padding: 10px 20px; font-size: 0.9em; text-decoration: none;">View GitHub Repository</a>
+                </div>
+                
+                <p style="margin-top: 30px; font-size: 0.8em; color: #666; text-align: center; width: 100%;">&copy; 2026 Fusion Refine. Built by mdsamar.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

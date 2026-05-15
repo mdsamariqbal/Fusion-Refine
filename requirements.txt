@@ -1,0 +1,11 @@
+google-genai
+diffusers
+transformers>=4.35.0
+accelerate>=0.24.1
+torch>=2.0.0
+safetensors>=0.4.0
+python-dotenv
+Pillow
+tqdm
+flask
+flask-cors

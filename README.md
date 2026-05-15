@@ -17,6 +17,12 @@ Fusion Refine is an AI-powered Character Synthesis System that takes two charact
 ### Phase 3: Iterative Refinement Loop
 ![Phase 3](screenshots/phase3.png)
 
+### Phase 4: Final Fused Character
+![Phase 4](screenshots/phase4.png)
+
+### History: Stored Generations
+![History](screenshots/history.png)
+
 ## Running Locally
 
 1. Create a virtual environment and install requirements:

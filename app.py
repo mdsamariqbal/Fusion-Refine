@@ -4,12 +4,16 @@ from flask_cors import CORS
 from agents import get_character_description, generate_description, generate_image, evaluate_image, improve_description
 from config import MAX_ITERATIONS, TARGET_SCORE
 
-app = Flask(__name__, static_folder='frontend', static_url_path='')
+app = Flask(__name__, static_folder='frontend')
 CORS(app)
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return send_from_directory('frontend', 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('frontend', path)
 
 @app.errorhandler(Exception)
 def handle_exception(e):
@@ -79,10 +83,10 @@ import threading
 import webbrowser
 
 def open_browser():
-    webbrowser.open_new("http://127.0.0.1:5000")
+    webbrowser.open_new("http://127.0.0.1:5001")
 
 if __name__ == '__main__':
     # Only open browser once, not on every reloader restart
     if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
         threading.Timer(1.5, open_browser).start()
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
